@@ -990,3 +990,100 @@
       }
     }
 
+    /* --- Alertas Module Tags & Preferences --- */
+    function renderAlertTags() {
+      const container = document.getElementById('alert-tags-container');
+      const activeTags = JSON.parse(localStorage.getItem(STORAGE_KEY_TAGS)) || DEFAULT_ACTIVE_TAGS;
+      container.innerHTML = '';
+
+      ALL_TAGS.forEach(tag => {
+        const isActive = activeTags.includes(tag);
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.onclick = () => toggleTag(tag);
+        if (isActive) {
+          btn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#370617] text-amber-400 border border-amber-500/40 transition-all';
+          btn.innerText = `✓ ${tag}`;
+        } else {
+          btn.className = 'px-3 py-1.5 rounded-lg text-xs font-medium bg-[#151a32] text-slate-400 border border-[#333851] hover:text-white transition-all';
+          btn.innerText = `+ ${tag}`;
+        }
+        container.appendChild(btn);
+      });
+    }
+
+    function toggleTag(tag) {
+      let activeTags = JSON.parse(localStorage.getItem(STORAGE_KEY_TAGS)) || [];
+      if (activeTags.includes(tag)) {
+        activeTags = activeTags.filter(t => t !== tag);
+      } else {
+        activeTags.push(tag);
+      }
+      localStorage.setItem(STORAGE_KEY_TAGS, JSON.stringify(activeTags));
+      renderAlertTags();
+    }
+
+    function actualizarSliderSpread(val) {
+      document.getElementById('label-spread-min').innerText = `${val}%`;
+    }
+
+    function guardarPreferenciasAlertas() {
+      const spread = document.getElementById('slider-spread').value;
+      localStorage.setItem(STORAGE_KEY_SPREAD, spread);
+      mostrarToast(`Reglas actualizadas: Descuento mínimo ${spread}%`, '🔔');
+    }
+
+    /* --- Utilities & Toast Helper --- */
+    function mostrarToast(msg, icon = '✓') {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-msg').innerText = msg;
+      document.getElementById('toast-icon').innerText = icon;
+
+      toast.classList.remove('translate-y-[-150%]', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-[-150%]', 'opacity-0');
+      }, 3200);
+    }
+
+    function analizarEnlaceHero() {
+      const val = document.getElementById('hero-search-input').value.trim();
+      if (!val) {
+        mostrarToast('Por favor pega un enlace o nombre de producto', '⚠️');
+        return;
+      }
+      mostrarToast('Analizando estructura arancelaria y flete...', '🔍');
+      setTimeout(() => {
+        navigate('comparador');
+      }, 700);
+    }
+
+    function copiarAnalisis() {
+      const texto = 'Equalyz Radar: Sony WH-1000XM5. Nacional ($1,489,000 COP) vs. Importado ($1,479,000 COP). Delta +0.67% con entrega 24h y garantía local.';
+      navigator.clipboard.writeText(texto);
+      mostrarToast('Resumen copiado al portapapeles', '📋');
+    }
+
+    /* --- Bootstrap Onload & Hash Handler --- */
+    window.addEventListener('DOMContentLoaded', () => {
+      initData();
+      renderAuthHeader();
+      renderSKUs();
+      renderCommunityReports();
+      renderAlertTags();
+      recalcularSimulador();
+
+      // Check current hash or default to 'inicio'
+      const hash = window.location.hash.replace('#', '') || 'inicio';
+      navigate(hash);
+    });
+
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '') || 'inicio';
+      navigate(hash);
+    });
+  </script>
+</body>
+</html>
