@@ -105,4 +105,888 @@
     </div>
   </header>
 
- 
+  <!-- ================= NOTIFICATION TOAST ================= -->
+  <div id="toast" class="fixed top-20 right-6 z-50 max-w-sm px-4 py-3 rounded-xl border border-amber-500/30 bg-[#151a32] text-slate-100 shadow-xl transition-all duration-300 transform translate-y-[-150%] opacity-0 pointer-events-none flex items-center gap-3">
+    <div id="toast-icon" class="text-amber-400 font-bold">✓</div>
+    <div class="text-xs font-medium" id="toast-msg">Notificación del sistema</div>
+  </div>
+
+  <!-- ================= MAIN CONTENT SPA VIEWPORT ================= -->
+  <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-24 md:pb-12">
+
+    <!-- ================= VIEW 1: INICIO ================= -->
+    <section id="view-inicio" class="view-pane space-y-10">
+      <!-- Hero Section -->
+      <div class="text-center max-w-3xl mx-auto pt-6 pb-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-medium mb-4">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Decisiones de compra inteligentes y transparentes
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+          Compara precios reales, impuestos y fletes <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-red-600">sin sesgos</span>.
+        </h1>
+        <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+          Análisis multifuente neutral. Calculamos aranceles DIAN, costos courier y reputación comprobada en Colombia.
+        </p>
+
+        <!-- Quick URL Search -->
+        <div class="mt-8 flex flex-col sm:flex-row gap-2 max-w-xl mx-auto">
+          <input id="hero-search-input" type="text" placeholder="Pega enlace de Amazon, Mercado Libre, Éxito..." class="flex-1 px-4 py-3 rounded-xl bg-[#070c24] border border-[#333851] text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-colors">
+          <button onclick="analizarEnlaceHero()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-red-600 text-white font-bold text-sm hover:opacity-95 transition-opacity flex items-center justify-center gap-2 shadow-lg shadow-orange-950/30">
+            <span>Analizar Enlace</span>
+            <span>→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="p-4 rounded-xl bg-[#070c24] border border-[#333851]/60">
+          <div class="text-xs text-slate-400 font-medium">Ahorro Promedio</div>
+          <div class="text-2xl sm:text-3xl font-extrabold font-mono text-white mt-1">+18.4%</div>
+          <div class="text-[11px] text-slate-500 mt-1">vs. retail local estándar</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#070c24] border border-[#333851]/60">
+          <div class="text-xs text-slate-400 font-medium">Monitoreo DIAN</div>
+          <div class="text-2xl sm:text-3xl font-extrabold font-mono text-amber-400 mt-1">&lt;$200 USD</div>
+          <div class="text-[11px] text-slate-500 mt-1">Exención arancel 0% activa</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#070c24] border border-[#333851]/60">
+          <div class="text-xs text-slate-400 font-medium">Facturas Auditadas</div>
+          <div class="text-2xl sm:text-3xl font-extrabold font-mono text-white mt-1">12.4K</div>
+          <div class="text-[11px] text-emerald-400 mt-1">98.6% validadas con CUFE</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#070c24] border border-[#333851]/60">
+          <div class="text-xs text-slate-400 font-medium">Latencia Push</div>
+          <div class="text-2xl sm:text-3xl font-extrabold font-mono text-amber-400 mt-1">&lt; 3.0s</div>
+          <div class="text-[11px] text-slate-500 mt-1">Telegram & app push</div>
+        </div>
+      </div>
+
+      <!-- Flagship Comparison of the Week Preview -->
+      <div class="p-6 rounded-2xl bg-[#070c24] border border-[#333851]">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <span class="text-[11px] font-bold tracking-wider uppercase text-amber-500">Duelo Acústico Flagship de la semana</span>
+            <h3 class="text-lg sm:text-xl font-bold text-white mt-0.5">Sony WH-1000XM5 vs. Bose QC Ultra</h3>
+          </div>
+          <button onclick="navigate('comparador')" class="text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition-colors">
+            Abrir análisis completo en Comparador →
+          </button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-[#151a32] border border-[#333851]/60 flex items-center justify-between">
+            <div>
+              <div class="text-xs text-slate-400 font-medium">Sony WH-1000XM5 (ANC)</div>
+              <div class="text-xl font-bold font-mono text-white mt-1">$1,489,000 COP</div>
+              <div class="text-[11px] text-emerald-400 mt-0.5">Entrega 24h • Garantía Colombia</div>
+            </div>
+            <div class="text-right">
+              <span class="text-3xl font-extrabold font-mono text-amber-400">94%</span>
+              <div class="text-[10px] text-slate-400 font-semibold uppercase">Score Óptimo</div>
+            </div>
+          </div>
+          <div class="p-4 rounded-xl bg-[#151a32] border border-[#333851]/60 flex items-center justify-between">
+            <div>
+              <div class="text-xs text-slate-400 font-medium">Bose QuietComfort Ultra</div>
+              <div class="text-xl font-bold font-mono text-white mt-1">$1,790,000 COP</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Importación 6–9 días</div>
+            </div>
+            <div class="text-right">
+              <span class="text-3xl font-extrabold font-mono text-slate-300">89%</span>
+              <div class="text-[10px] text-slate-400 font-semibold uppercase">Score Global</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 2: COMPARADOR ================= -->
+    <section id="view-comparador" class="view-pane hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#333851]/60">
+        <div>
+          <span class="text-xs font-semibold text-amber-500 uppercase tracking-wider">• Radar Comparativo Activo</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Comparador <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-red-500">Cara a Cara</span></h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400">TRM Oficial DIAN: <strong class="text-white font-mono">$4,120 COP</strong></span>
+        </div>
+      </div>
+
+      <!-- Dual Cards Cara a Cara -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Card 1: Importado USA -->
+        <div class="bg-[#070c24] border border-[#333851] rounded-2xl p-6 relative flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">🇺🇸 Amazon USA Courier</span>
+              <span class="text-[11px] text-slate-400 bg-[#151a32] px-2 py-0.5 rounded border border-[#333851]">6-8 días hábiles</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Sony WH-1000XM5 Noise Canceling (Negro)</h3>
+            
+            <div class="my-5 p-4 rounded-xl bg-[#151a32]/80 border border-[#333851] flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-400">Costo Desembarcado Total (Landed)</span>
+                <div class="text-2xl font-extrabold font-mono text-white">$1,479,000 COP</div>
+                <div class="text-[11px] text-slate-400 mt-0.5">Precio FOB: $329 USD + Flete $29 USD</div>
+              </div>
+              <div class="text-right">
+                <div class="text-3xl font-extrabold font-mono text-amber-400">79<span class="text-sm text-slate-400">/100</span></div>
+                <div class="text-[10px] text-slate-400 uppercase font-semibold">Score Equalyz</div>
+              </div>
+            </div>
+
+            <!-- Specs Grid -->
+            <ul class="space-y-2 text-xs text-slate-300 mb-6">
+              <li class="flex justify-between py-1 border-b border-[#333851]/40">
+                <span class="text-slate-400">Arancel DIAN:</span>
+                <span class="text-emerald-400 font-medium">Exento (&lt;$200 USD base aduanal)</span>
+              </li>
+              <li class="flex justify-between py-1 border-b border-[#333851]/40">
+                <span class="text-slate-400">Garantía:</span>
+                <span class="text-slate-300">1 año internacional (trámite en USA)</span>
+              </li>
+              <li class="flex justify-between py-1">
+                <span class="text-slate-400">Retorno / Devolución:</span>
+                <span class="text-amber-400">Costeado por usuario internacional</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="https://amazon.com" target="_blank" rel="noopener" class="w-full py-2.5 text-center rounded-xl bg-[#151a32] hover:bg-[#1a213e] text-slate-200 font-semibold text-xs border border-[#333851] transition-colors">
+            Ver Oferta en Amazon ↗
+          </a>
+        </div>
+
+        <!-- Card 2: Colombia Local -->
+        <div class="bg-[#070c24] border-2 border-amber-500/50 rounded-2xl p-6 relative flex flex-col justify-between glow-accent">
+          <div class="absolute -top-3 left-6 px-3 py-0.5 rounded-full bg-gradient-to-r from-amber-500 to-red-600 text-black font-extrabold text-[10px] uppercase tracking-wider">
+            ★ Recomendación Equalyz
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-3 mt-1">
+              <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">🇨🇴 Distribuidor Oficial Colombia</span>
+              <span class="text-[11px] text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-800/40">Entrega Inmediata (24h)</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Sony WH-1000XM5 Oficial Colombia</h3>
+
+            <div class="my-5 p-4 rounded-xl bg-[#151a32]/80 border border-[#333851] flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-400">Precio Final Facturado con IVA</span>
+                <div class="text-2xl font-extrabold font-mono text-white">$1,489,000 COP</div>
+                <div class="text-[11px] text-emerald-400 mt-0.5">Envío asegurado nacional incluido</div>
+              </div>
+              <div class="text-right">
+                <div class="text-3xl font-extrabold font-mono text-emerald-400">94<span class="text-sm text-slate-400">/100</span></div>
+                <div class="text-[10px] text-emerald-400 uppercase font-semibold">Score Óptimo</div>
+              </div>
+            </div>
+
+            <!-- Specs Grid -->
+            <ul class="space-y-2 text-xs text-slate-300 mb-6">
+              <li class="flex justify-between py-1 border-b border-[#333851]/40">
+                <span class="text-slate-400">Facturación:</span>
+                <span class="text-emerald-400 font-medium">Factura Electrónica DIAN con CUFE</span>
+              </li>
+              <li class="flex justify-between py-1 border-b border-[#333851]/40">
+                <span class="text-slate-400">Garantía:</span>
+                <span class="text-emerald-400 font-medium">12 Meses directa con Sony Colombia</span>
+              </li>
+              <li class="flex justify-between py-1">
+                <span class="text-slate-400">Retorno / Devolución:</span>
+                <span class="text-slate-300">30 días ley de retracto nacional</span>
+              </li>
+            </ul>
+          </div>
+
+          <button onclick="mostrarToast('Redirigiendo a tienda oficial verificada...', '🛍️')" class="w-full py-2.5 text-center rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-red-600 hover:opacity-95 text-white font-bold text-xs transition-opacity shadow-lg shadow-orange-950/40">
+            Comprar con Garantía Nacional →
+          </button>
+        </div>
+      </div>
+
+      <!-- Veredicto Sintético -->
+      <div class="p-4 rounded-xl bg-[#151a32]/70 border border-[#333851] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+        <div class="flex items-center gap-3">
+          <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/30 font-bold uppercase text-[10px]">Veredicto</span>
+          <span class="text-slate-300">Por solo <strong>+$10,000 COP</strong> (+0.67%) recibes en 24h, aseguras factura DIAN y soporte técnico local.</span>
+        </div>
+        <button onclick="copiarAnalisis()" class="text-amber-400 hover:text-amber-300 font-semibold self-start sm:self-auto">Copiar resumen 📋</button>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 3: EMPRENDEDOR B2B ================= -->
+    <section id="view-emprendedor" class="view-pane hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#333851]/60">
+        <div>
+          <span class="text-xs font-semibold text-amber-500 uppercase tracking-wider">• Telemetría de Arbitraje Comercial</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Panel <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-red-500">Emprendedor B2B</span></h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="exportarCSV()" class="px-3 py-1.5 rounded-lg bg-[#151a32] border border-[#333851] text-xs font-semibold text-slate-300 hover:text-white transition-colors">
+            Descargar CSV 📥
+          </button>
+          <button onclick="abrirModalNuevoSKU()" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-amber-500 to-red-600 text-xs font-bold text-white hover:opacity-95 transition-opacity">
+            + Nuevo SKU
+          </button>
+        </div>
+      </div>
+
+      <!-- Arbitrage Calculator Simulator -->
+      <div class="p-5 rounded-2xl bg-[#070c24] border border-[#333851] space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <span>Simulador de Desembarco & Margen</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/40 text-emerald-400 border border-emerald-800/40">DIAN &lt;$200 Activa</span>
+          </h3>
+          <span class="text-xs text-slate-400">Tarifa Courier: <strong class="text-white">$4.50 USD/lb</strong></span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+          <div>
+            <label class="block text-slate-400 mb-1">Precio FOB Origen (USD)</label>
+            <input id="calc-fob" type="number" value="120" oninput="recalcularSimulador()" class="w-full px-3 py-2 rounded-lg bg-[#151a32] border border-[#333851] text-white font-mono focus:outline-none focus:border-amber-500">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Peso Estimado (Libras)</label>
+            <input id="calc-peso" type="number" step="0.5" value="2.0" oninput="recalcularSimulador()" class="w-full px-3 py-2 rounded-lg bg-[#151a32] border border-[#333851] text-white font-mono focus:outline-none focus:border-amber-500">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Precio Venta Local (COP)</label>
+            <input id="calc-venta" type="number" step="10000" value="790000" oninput="recalcularSimulador()" class="w-full px-3 py-2 rounded-lg bg-[#151a32] border border-[#333851] text-white font-mono focus:outline-none focus:border-amber-500">
+          </div>
+          <div class="p-3 rounded-lg bg-[#151a32] border border-[#333851] flex flex-col justify-center">
+            <span class="text-[11px] text-slate-400">Margen Bruto Proyectado</span>
+            <div id="calc-margen-result" class="text-lg font-extrabold font-mono text-emerald-400">+48.2%</div>
+            <span id="calc-ganancia-cop" class="text-[10px] text-slate-400 font-mono">+$258,000 COP netos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opportunities Table (stored in localStorage) -->
+      <div class="p-5 rounded-2xl bg-[#070c24] border border-[#333851] space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-bold text-white">Oportunidades de Arbitraje Monitoreadas</h3>
+          <span class="text-xs text-slate-400" id="total-skus-count">Cargando SKUs...</span>
+        </div>
+
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs text-slate-300">
+            <thead class="text-[11px] uppercase tracking-wider text-slate-400 bg-[#151a32]/60 border-b border-[#333851]">
+              <tr>
+                <th class="py-3 px-3">SKU / Producto</th>
+                <th class="py-3 px-3">Origen</th>
+                <th class="py-3 px-3">Costo Landed</th>
+                <th class="py-3 px-3">PVP Sugerido</th>
+                <th class="py-3 px-3">Spread Margen</th>
+                <th class="py-3 px-3 text-right">Acción</th>
+              </tr>
+            </thead>
+            <tbody id="sku-table-body" class="divide-y divide-[#333851]/40">
+              <!-- Dynamically populated from JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 4: COMUNIDAD ================= -->
+    <section id="view-comunidad" class="view-pane hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#333851]/60">
+        <div>
+          <span class="text-xs font-semibold text-amber-500 uppercase tracking-wider">• Reseñas Verificadas & Auditoría</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Comunidad <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-red-500">Transparente</span></h2>
+        </div>
+        <button onclick="abrirModalReporte()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-red-600 text-xs font-bold text-white hover:opacity-95 transition-opacity self-start sm:self-auto">
+          + Publicar Reporte con Factura
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Feed of Reports (2 cols) -->
+        <div class="lg:col-span-2 space-y-4" id="community-reports-feed">
+          <!-- Dynamically populated from JS -->
+        </div>
+
+        <!-- Sidebar: Store Semaphore & Stats -->
+        <div class="space-y-4">
+          <div class="p-5 rounded-2xl bg-[#070c24] border border-[#333851] space-y-3">
+            <h3 class="text-xs font-bold text-white uppercase tracking-wider">Semáforo de Cumplimiento</h3>
+            <div class="space-y-2 text-xs">
+              <div>
+                <div class="flex justify-between text-slate-300 mb-1">
+                  <span>Mercado Libre Platinium</span>
+                  <span class="text-emerald-400 font-mono font-bold">96%</span>
+                </div>
+                <div class="w-full bg-[#151a32] h-1.5 rounded-full overflow-hidden">
+                  <div class="bg-emerald-500 h-full w-[96%]"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-slate-300 mb-1">
+                  <span>Amazon USA Prime Direct</span>
+                  <span class="text-amber-400 font-mono font-bold">88%</span>
+                </div>
+                <div class="w-full bg-[#151a32] h-1.5 rounded-full overflow-hidden">
+                  <div class="bg-amber-400 h-full w-[88%]"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-slate-300 mb-1">
+                  <span>AliExpress Choice Standard</span>
+                  <span class="text-red-400 font-mono font-bold">64%</span>
+                </div>
+                <div class="w-full bg-[#151a32] h-1.5 rounded-full overflow-hidden">
+                  <div class="bg-red-500 h-full w-[64%]"></div>
+                </div>
+              </div>
+            </div>
+            <div class="text-[11px] text-slate-500 pt-2 border-t border-[#333851]">
+              Basado en 12,480 guías de rastreo y CUFE verificados.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 5: ALERTAS ================= -->
+    <section id="view-alertas" class="view-pane hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#333851]/60">
+        <div>
+          <span class="text-xs font-semibold text-amber-500 uppercase tracking-wider">• Motor Push de Precios & Oportunidades</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Configuración de <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-red-500">Alertas</span></h2>
+        </div>
+        <button onclick="guardarPreferenciasAlertas()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-red-600 text-xs font-bold text-white hover:opacity-95 transition-opacity self-start sm:self-auto">
+          Guardar Parámetros de Alerta
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Panel 1: Etiquetas Interactivas -->
+        <div class="p-6 rounded-2xl bg-[#070c24] border border-[#333851] space-y-4">
+          <h3 class="text-sm font-bold text-white">Etiquetas de Categorías Monitoreadas</h3>
+          <p class="text-xs text-slate-400">Selecciona los rubros que deseas escanear cada 45 segundos:</p>
+
+          <div class="flex flex-wrap gap-2 pt-2" id="alert-tags-container">
+            <!-- Dynamically populated toggle buttons -->
+          </div>
+        </div>
+
+        <!-- Panel 2: Canales y Umbrales -->
+        <div class="p-6 rounded-2xl bg-[#070c24] border border-[#333851] space-y-5">
+          <h3 class="text-sm font-bold text-white">Canales y Umbral de Disparo</h3>
+          
+          <div>
+            <div class="flex justify-between text-xs text-slate-300 mb-2">
+              <span>Descuento / Spread mínimo para notificar:</span>
+              <span id="label-spread-min" class="font-mono text-amber-400 font-bold">15%</span>
+            </div>
+            <input id="slider-spread" type="range" min="5" max="40" value="15" oninput="actualizarSliderSpread(this.value)" class="w-full accent-amber-500 cursor-pointer">
+          </div>
+
+          <div class="space-y-3 pt-2">
+            <label class="flex items-center justify-between p-3 rounded-xl bg-[#151a32] border border-[#333851] cursor-pointer">
+              <span class="text-xs font-medium text-slate-300">Notificaciones Push de Navegador</span>
+              <input type="checkbox" id="check-push" class="accent-amber-500 w-4 h-4" checked>
+            </label>
+            <label class="flex items-center justify-between p-3 rounded-xl bg-[#151a32] border border-[#333851] cursor-pointer">
+              <span class="text-xs font-medium text-slate-300">Bot de Telegram Instantáneo</span>
+              <input type="checkbox" id="check-telegram" class="accent-amber-500 w-4 h-4" checked>
+            </label>
+            <label class="flex items-center justify-between p-3 rounded-xl bg-[#151a32] border border-[#333851] cursor-pointer">
+              <span class="text-xs font-medium text-slate-300">Resumen Matutino por Correo</span>
+              <input type="checkbox" id="check-email" class="accent-amber-500 w-4 h-4">
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 6: ACCESO & REGISTRO ================= -->
+    <section id="view-login" class="view-pane hidden max-w-md mx-auto py-8">
+      <div class="p-8 rounded-2xl bg-[#070c24] border border-[#333851] space-y-6 shadow-2xl">
+        <div class="text-center">
+          <h2 class="text-2xl font-extrabold text-white">Acceso a Equalyz</h2>
+          <p class="text-xs text-slate-400 mt-1">Tu radar neutral de precios y telemetría de arbitraje</p>
+        </div>
+
+        <!-- Auth Tabs Toggle -->
+        <div class="grid grid-cols-2 p-1 bg-[#151a32] rounded-xl border border-[#333851] text-xs font-semibold">
+          <button id="auth-tab-login" onclick="cambiarAuthTab('login')" class="py-2 rounded-lg bg-amber-500 text-black transition-all">Iniciar Sesión</button>
+          <button id="auth-tab-register" onclick="cambiarAuthTab('register')" class="py-2 rounded-lg text-slate-400 hover:text-white transition-all">Crear Cuenta</button>
+        </div>
+
+        <!-- Social Mock OAuth -->
+        <div class="grid grid-cols-2 gap-3">
+          <button onclick="mockOAuth('Google')" class="py-2.5 px-3 rounded-xl bg-[#151a32] hover:bg-[#1a213e] border border-[#333851] text-xs font-medium text-slate-200 transition-colors flex items-center justify-center gap-2">
+            <span>Google</span>
+          </button>
+          <button onclick="mockOAuth('Apple')" class="py-2.5 px-3 rounded-xl bg-[#151a32] hover:bg-[#1a213e] border border-[#333851] text-xs font-medium text-slate-200 transition-colors flex items-center justify-center gap-2">
+            <span>Apple ID</span>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="flex-1 h-[1px] bg-[#333851]"></div>
+          <span class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">O corporativo</span>
+          <div class="flex-1 h-[1px] bg-[#333851]"></div>
+        </div>
+
+        <form id="auth-form" onsubmit="procesarAuth(event)" class="space-y-4">
+          <div id="register-name-field" class="hidden">
+            <label class="block text-xs text-slate-400 mb-1">Nombre Completo</label>
+            <input id="auth-name" type="text" placeholder="Ej: Carlos Silva" class="w-full px-3 py-2.5 rounded-xl bg-[#151a32] border border-[#333851] text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Correo Electrónico</label>
+            <input id="auth-email" type="email" required placeholder="tu@empresa.com" class="w-full px-3 py-2.5 rounded-xl bg-[#151a32] border border-[#333851] text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Contraseña</label>
+            <input id="auth-password" type="password" required placeholder="••••••••" class="w-full px-3 py-2.5 rounded-xl bg-[#151a32] border border-[#333851] text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+          </div>
+          <button type="submit" id="auth-submit-btn" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-red-600 hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider transition-opacity shadow-lg shadow-orange-950/30">
+            Ingresar al Radar →
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= MODAL: NUEVO SKU B2B ================= -->
+  <div id="modal-sku" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-[#070c24] border border-[#333851] rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-bold text-white">Registrar Nuevo SKU de Arbitraje</h3>
+        <button onclick="cerrarModalNuevoSKU()" class="text-slate-400 hover:text-white text-lg font-bold">&times;</button>
+      </div>
+      <form onsubmit="guardarNuevoSKU(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-400 mb-1">Nombre o Modelo del Producto</label>
+          <input id="sku-input-nombre" type="text" required placeholder="Ej: DJI Mini 4 Pro Fly More" class="w-full px-3 py-2 rounded-lg bg-[#151a32] border border-[#333851] text-white focus:outline-none focus:border-amber-500">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1">Origen / Proveedor</label>
+            <input id="sku-input-origen" type="text" required placeholder="Ej: Miami MIA" class="w-full px-3 py-2 rounded-lg bg-[#151a32] border border-[#333851] text-white focus:outline-none focus:border-amber-500">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Costo Landed Total (COP)</label>
+            <input id="sku-input-costo" type="number" required placeholder="1850000" class="w-full px-3 py-2 rounded-lg bg-[#151a32] border border-[#333851] text-white focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">PVP Sugerido Colombia (COP)</label>
+          <input id="sku-input-pvp" type="number" required placeholder="2650000" class="w-full px-3 py-2 rounded-lg bg-[#151a32] border border-[#333851] text-white focus:outline-none focus:border-amber-500">
+        </div>
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="cerrarModalNuevoSKU()" class="px-4 py-2 rounded-lg bg-[#151a32] text-slate-300">Cancelar</button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-red-600 text-white font-bold">Guardar SKU</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: PUBLICAR REPORTE COMUNIDAD ================= -->
+  <div id="modal-reporte" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-[#070c24] border border-[#333851] rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-bold text-white">Publicar Reporte de Compra Real</h3>
+        <button onclick="cerrarModalReporte()" class="text-slate-400 hover:text-white text-lg font-bold">&times;</button>
+      </div>
+      <form onsubmit="guardarNuevoReporte(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-400 mb-1">Producto Adquirido</label>
+          <input id="rep-input-producto" type="text" required placeholder="Ej: MacBook Air M2 16GB" class="w-full px-3 py-2 rounded-lg bg-[#151a32] border border-[#333851] text-white focus:outline-none focus:border-amber-500">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1">Tienda</label>
+            <input id="rep-input-tienda" type="text" required placeholder="Amazon USA / Mercado Libre" class="w-full px-3 py-2 rounded-lg bg-[#151a32] border border-[#333851] text-white focus:outline-none focus:border-amber-500">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Días de Entrega</label>
+            <input id="rep-input-dias" type="number" required placeholder="5" class="w-full px-3 py-2 rounded-lg bg-[#151a32] border border-[#333851] text-white focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">Código CUFE / Hash Factura DIAN</label>
+          <input id="rep-input-cufe" type="text" required placeholder="fe29a8b1...92dc" class="w-full px-3 py-2 rounded-lg bg-[#151a32] border border-[#333851] text-white font-mono focus:outline-none focus:border-amber-500">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">Comentario Sintético</label>
+          <textarea id="rep-input-texto" rows="2" required placeholder="¿Llegó a tiempo? ¿Hubo cobros imprevistos?" class="w-full px-3 py-2 rounded-lg bg-[#151a32] border border-[#333851] text-white focus:outline-none focus:border-amber-500"></textarea>
+        </div>
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="cerrarModalReporte()" class="px-4 py-2 rounded-lg bg-[#151a32] text-slate-300">Cancelar</button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-red-600 text-white font-bold">Publicar Reporte</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MOBILE BOTTOM TAB NAVIGATION (5 TABS) ================= -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 h-[68px] bg-[#0c1229]/95 backdrop-blur-lg border-t border-[#333851] grid grid-cols-5 z-50 px-1">
+    <button onclick="navigate('inicio')" id="tab-mobile-inicio" class="flex flex-col items-center justify-center text-slate-400 transition-colors">
+      <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      <span class="text-[10px] font-medium">Inicio</span>
+    </button>
+    <button onclick="navigate('comparador')" id="tab-mobile-comparador" class="flex flex-col items-center justify-center text-slate-400 transition-colors">
+      <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+      <span class="text-[10px] font-medium">Comparar</span>
+    </button>
+    <button onclick="navigate('emprendedor')" id="tab-mobile-emprendedor" class="flex flex-col items-center justify-center text-slate-400 transition-colors">
+      <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+      <span class="text-[10px] font-medium">B2B</span>
+    </button>
+    <button onclick="navigate('comunidad')" id="tab-mobile-comunidad" class="flex flex-col items-center justify-center text-slate-400 transition-colors">
+      <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/></svg>
+      <span class="text-[10px] font-medium">Comunidad</span>
+    </button>
+    <button onclick="navigate('alertas')" id="tab-mobile-alertas" class="flex flex-col items-center justify-center text-slate-400 transition-colors">
+      <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+      <span class="text-[10px] font-medium">Alertas</span>
+    </button>
+  </nav>
+
+  <!-- ================= STANDARDIZED GLOBAL FOOTER ================= -->
+  <footer class="w-full border-t border-[#333851] bg-[#0c1229] py-6 px-4 md:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+    <div>
+      <span class="font-bold text-slate-300">Equalyz</span> · Asistente de compra inteligente y transparente
+    </div>
+    <div>
+      © 2025 Equalyz. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT: SPA ROUTER & PERSISTENCE ================= -->
+  <script>
+    /* --- Initial Mock Data & LocalStorage Setup --- */
+    const STORAGE_KEY_USER = 'equalyz_session_user';
+    const STORAGE_KEY_SKUS = 'equalyz_b2b_skus';
+    const STORAGE_KEY_REPORTS = 'equalyz_community_reports';
+    const STORAGE_KEY_TAGS = 'equalyz_alert_tags';
+    const STORAGE_KEY_SPREAD = 'equalyz_alert_spread';
+
+    const DEFAULT_SKUS = [
+      { id: 1, nombre: 'Sony WH-1000XM5 ANC', origen: 'Amazon USA (MIA)', landed: 1479000, pvp: 2150000, spread: 45.4 },
+      { id: 2, nombre: 'DJI Mini 3 Pro Fly More', origen: 'B&H Photo (NYC)', landed: 2890000, pvp: 3750000, spread: 29.7 },
+      { id: 3, nombre: 'Garmin Forerunner 265 GPS', origen: 'Amazon USA (MIA)', landed: 1280000, pvp: 1950000, spread: 52.3 }
+    ];
+
+    const DEFAULT_REPORTS = [
+      { id: 1, usuario: 'David M. (Bogotá)', producto: 'Sony WH-1000XM5', tienda: 'Mercado Libre Oficial', dias: 1, score: 98, cufe: 'fe29...a8b1', texto: 'Llegó en menos de 24 horas. Factura legal verificada en DIAN y garantía activa con Sony Colombia.', votos: 42 },
+      { id: 2, usuario: 'Valentina R. (Medellín)', producto: 'MacBook Air M2 16GB', tienda: 'Amazon USA Courier', dias: 7, score: 86, cufe: 'a19c...883e', texto: 'Sin cobros sorpresa de arancel por ser &lt;$200 exención aduanera. Flete courier cobrado tal cual lo proyectó Equalyz.', votos: 29 }
+    ];
+
+    const ALL_TAGS = ['Smartphones 5G', 'Audio Hi-Fi', 'Drones 4K', 'Laptops Gaming', 'Cámaras Mirrorless', 'Wearables Salud', 'Consolas Next-Gen'];
+    const DEFAULT_ACTIVE_TAGS = ['Smartphones 5G', 'Audio Hi-Fi', 'Laptops Gaming'];
+
+    /* --- App State Initialization --- */
+    function initData() {
+      if (!localStorage.getItem(STORAGE_KEY_SKUS)) {
+        localStorage.setItem(STORAGE_KEY_SKUS, JSON.stringify(DEFAULT_SKUS));
+      }
+      if (!localStorage.getItem(STORAGE_KEY_REPORTS)) {
+        localStorage.setItem(STORAGE_KEY_REPORTS, JSON.stringify(DEFAULT_REPORTS));
+      }
+      if (!localStorage.getItem(STORAGE_KEY_TAGS)) {
+        localStorage.setItem(STORAGE_KEY_TAGS, JSON.stringify(DEFAULT_ACTIVE_TAGS));
+      }
+    }
+
+    /* --- Router SPA --- */
+    function navigate(route) {
+      // Hide all panes
+      document.querySelectorAll('.view-pane').forEach(el => el.classList.add('hidden'));
+
+      // Show requested view
+      const target = document.getElementById(`view-${route}`);
+      if (target) {
+        target.classList.remove('hidden');
+      } else {
+        document.getElementById('view-inicio').classList.remove('hidden');
+        route = 'inicio';
+      }
+
+      // Update Desktop Nav Active States
+      const navButtons = ['inicio', 'comparador', 'emprendedor', 'comunidad', 'alertas'];
+      navButtons.forEach(btn => {
+        const el = document.getElementById(`nav-btn-${btn}`);
+        if (el) {
+          if (btn === route) {
+            el.className = 'px-3 py-1.5 rounded-lg bg-[#370617]/60 text-amber-400 border border-amber-500/20 text-sm font-semibold transition-all';
+          } else {
+            el.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all text-sm font-medium';
+          }
+        }
+      });
+
+      // Update Mobile Tab Navigation States
+      navButtons.forEach(tab => {
+        const el = document.getElementById(`tab-mobile-${tab}`);
+        if (el) {
+          if (tab === route) {
+            el.className = 'flex flex-col items-center justify-center text-amber-400 font-semibold transition-colors';
+          } else {
+            el.className = 'flex flex-col items-center justify-center text-slate-400 transition-colors';
+          }
+        }
+      });
+
+      // Update URL hash without reload
+      window.location.hash = route;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* --- Auth Profile State --- */
+    function renderAuthHeader() {
+      const slot = document.getElementById('auth-header-slot');
+      const user = JSON.parse(localStorage.getItem(STORAGE_KEY_USER));
+
+      if (user) {
+        slot.innerHTML = `
+          <div class="flex items-center gap-2">
+            <div class="text-right hidden sm:block">
+              <div class="text-xs font-bold text-white">${user.name || user.email.split('@')[0]}</div>
+              <div class="text-[10px] text-amber-400">Verificado B2B</div>
+            </div>
+            <button onclick="cerrarSesion()" title="Cerrar Sesión" class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 to-red-600 p-[1.5px] hover:opacity-90 transition-opacity">
+              <div class="w-full h-full rounded-full bg-[#0c1229] flex items-center justify-center text-xs font-bold text-white">
+                ${(user.name ? user.name[0] : 'U').toUpperCase()}
+              </div>
+            </button>
+          </div>
+        `;
+      } else {
+        slot.innerHTML = `
+          <button onclick="navigate('login')" class="px-3 py-1.5 rounded-lg bg-[#151a32] hover:bg-[#1a213e] border border-[#333851] text-xs font-semibold text-slate-200 hover:text-white transition-colors">
+            Acceder
+          </button>
+        `;
+      }
+    }
+
+    let authMode = 'login';
+    function cambiarAuthTab(mode) {
+      authMode = mode;
+      const tabLogin = document.getElementById('auth-tab-login');
+      const tabReg = document.getElementById('auth-tab-register');
+      const nameField = document.getElementById('register-name-field');
+      const submitBtn = document.getElementById('auth-submit-btn');
+
+      if (mode === 'login') {
+        tabLogin.className = 'py-2 rounded-lg bg-amber-500 text-black transition-all';
+        tabReg.className = 'py-2 rounded-lg text-slate-400 hover:text-white transition-all';
+        nameField.classList.add('hidden');
+        submitBtn.innerText = 'Ingresar al Radar →';
+      } else {
+        tabReg.className = 'py-2 rounded-lg bg-amber-500 text-black transition-all';
+        tabLogin.className = 'py-2 rounded-lg text-slate-400 hover:text-white transition-all';
+        nameField.classList.remove('hidden');
+        submitBtn.innerText = 'Crear Cuenta Verificada →';
+      }
+    }
+
+    function procesarAuth(e) {
+      e.preventDefault();
+      const email = document.getElementById('auth-email').value;
+      const name = document.getElementById('auth-name').value || 'Usuario Equalyz';
+
+      const user = { email, name, loggedAt: new Date().toISOString() };
+      localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(user));
+      renderAuthHeader();
+      mostrarToast(`Bienvenido a Equalyz, ${name}`, '👋');
+      navigate('inicio');
+    }
+
+    function mockOAuth(provider) {
+      const user = { email: `usuario_${provider.toLowerCase()}@equalyz.co`, name: `Usuario ${provider}`, loggedAt: new Date().toISOString() };
+      localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(user));
+      renderAuthHeader();
+      mostrarToast(`Autenticado exitosamente vía ${provider}`, '🔑');
+      navigate('inicio');
+    }
+
+    function cerrarSesion() {
+      if (confirm('¿Deseas cerrar tu sesión en Equalyz?')) {
+        localStorage.removeItem(STORAGE_KEY_USER);
+        renderAuthHeader();
+        mostrarToast('Sesión cerrada', 'ℹ️');
+      }
+    }
+
+    /* --- B2B Arbitrage Simulator & SKUs --- */
+    function recalcularSimulador() {
+      const fobUSD = parseFloat(document.getElementById('calc-fob').value) || 0;
+      const pesoLb = parseFloat(document.getElementById('calc-peso').value) || 0;
+      const pvpCOP = parseFloat(document.getElementById('calc-venta').value) || 0;
+
+      const TRM = 4120;
+      const courierRatePerLb = 4.5; // USD
+      const fleteUSD = pesoLb * courierRatePerLb;
+      
+      // DIAN exemption under $200 USD base
+      let arancelUSD = 0;
+      if (fobUSD > 200) {
+        arancelUSD = fobUSD * 0.10; // 10% arancel estándar si supera 200
+      }
+
+      const costoTotalCOP = (fobUSD + fleteUSD + arancelUSD) * TRM;
+      const gananciaCOP = pvpCOP - costoTotalCOP;
+      const margenPorcentaje = pvpCOP > 0 ? ((gananciaCOP / pvpCOP) * 100).toFixed(1) : 0;
+
+      const margenEl = document.getElementById('calc-margen-result');
+      const gananciaEl = document.getElementById('calc-ganancia-cop');
+
+      if (gananciaCOP >= 0) {
+        margenEl.className = 'text-lg font-extrabold font-mono text-emerald-400';
+        margenEl.innerText = `+${margenPorcentaje}%`;
+        gananciaEl.innerText = `+$${Math.round(gananciaCOP).toLocaleString()} COP netos`;
+      } else {
+        margenEl.className = 'text-lg font-extrabold font-mono text-red-400';
+        margenEl.innerText = `${margenPorcentaje}%`;
+        gananciaEl.innerText = `-$${Math.abs(Math.round(gananciaCOP)).toLocaleString()} COP déficit`;
+      }
+    }
+
+    function renderSKUs() {
+      const skus = JSON.parse(localStorage.getItem(STORAGE_KEY_SKUS)) || [];
+      const tbody = document.getElementById('sku-table-body');
+      const countEl = document.getElementById('total-skus-count');
+
+      countEl.innerText = `${skus.length} SKUs activos sincronizados`;
+      tbody.innerHTML = '';
+
+      if (skus.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-500">No hay SKUs registrados. Haz clic en "+ Nuevo SKU".</td></tr>`;
+        return;
+      }
+
+      skus.forEach(s => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-[#151a32]/40 transition-colors';
+        tr.innerHTML = `
+          <td class="py-3 px-3 font-semibold text-white">${s.nombre}</td>
+          <td class="py-3 px-3 text-slate-400">${s.origen}</td>
+          <td class="py-3 px-3 font-mono text-slate-300">$${s.landed.toLocaleString()} COP</td>
+          <td class="py-3 px-3 font-mono text-slate-300">$${s.pvp.toLocaleString()} COP</td>
+          <td class="py-3 px-3 font-mono font-bold text-emerald-400">+${s.spread}%</td>
+          <td class="py-3 px-3 text-right">
+            <button onclick="eliminarSKU(${s.id})" class="text-slate-500 hover:text-red-400 transition-colors" title="Eliminar">✕</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function abrirModalNuevoSKU() { document.getElementById('modal-sku').classList.remove('hidden'); }
+    function cerrarModalNuevoSKU() { document.getElementById('modal-sku').classList.add('hidden'); }
+
+    function guardarNuevoSKU(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('sku-input-nombre').value;
+      const origen = document.getElementById('sku-input-origen').value;
+      const landed = parseFloat(document.getElementById('sku-input-costo').value) || 0;
+      const pvp = parseFloat(document.getElementById('sku-input-pvp').value) || 0;
+
+      const spread = pvp > 0 ? (((pvp - landed) / pvp) * 100).toFixed(1) : 0;
+      const nuevo = { id: Date.now(), nombre, origen, landed, pvp, spread };
+
+      const skus = JSON.parse(localStorage.getItem(STORAGE_KEY_SKUS)) || [];
+      skus.unshift(nuevo);
+      localStorage.setItem(STORAGE_KEY_SKUS, JSON.stringify(skus));
+
+      cerrarModalNuevoSKU();
+      renderSKUs();
+      mostrarToast(`SKU "${nombre}" añadido al radar`, '📈');
+    }
+
+    function eliminarSKU(id) {
+      let skus = JSON.parse(localStorage.getItem(STORAGE_KEY_SKUS)) || [];
+      skus = skus.filter(s => s.id !== id);
+      localStorage.setItem(STORAGE_KEY_SKUS, JSON.stringify(skus));
+      renderSKUs();
+      mostrarToast('SKU eliminado del panel', '🗑️');
+    }
+
+    function exportarCSV() {
+      const skus = JSON.parse(localStorage.getItem(STORAGE_KEY_SKUS)) || [];
+      let csv = 'ID,Nombre,Origen,CostoLandedCOP,PVPSugeridoCOP,SpreadPorcentaje\n';
+      skus.forEach(s => {
+        csv += `${s.id},"${s.nombre}","${s.origen}",${s.landed},${s.pvp},${s.spread}\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Equalyz_Arbitraje_B2B_${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+      mostrarToast('Reporte CSV generado y descargado', '📥');
+    }
+
+    /* --- Community Reports Feed --- */
+    function renderCommunityReports() {
+      const feed = document.getElementById('community-reports-feed');
+      const reports = JSON.parse(localStorage.getItem(STORAGE_KEY_REPORTS)) || [];
+      feed.innerHTML = '';
+
+      reports.forEach(r => {
+        const card = document.createElement('div');
+        card.className = 'p-5 rounded-2xl bg-[#070c24] border border-[#333851] space-y-3';
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-white">${r.usuario}</span>
+              <span class="text-[10px] text-emerald-400 font-mono px-2 py-0.5 rounded bg-emerald-950/40 border border-emerald-800/40">✓ CUFE Auditado (${r.cufe})</span>
+            </div>
+            <span class="text-xs text-slate-400">${r.dias} días de entrega</span>
+          </div>
+          <div class="text-sm font-semibold text-white">${r.producto} <span class="text-slate-400 text-xs font-normal">• ${r.tienda}</span></div>
+          <p class="text-xs text-slate-300">${r.texto}</p>
+          <div class="flex items-center justify-between pt-2 border-t border-[#333851]/60 text-xs text-slate-400">
+            <span>Score Experiencia: <strong class="text-amber-400 font-mono">${r.score}%</strong></span>
+            <button onclick="votarReporte(${r.id})" class="text-xs text-slate-400 hover:text-white flex items-center gap-1 transition-colors">
+              <span>👍 Útil</span> <span class="font-mono text-amber-400 font-bold" id="votos-${r.id}">(${r.votos})</span>
+            </button>
+          </div>
+        `;
+        feed.appendChild(card);
+      });
+    }
+
+    function abrirModalReporte() { document.getElementById('modal-reporte').classList.remove('hidden'); }
+    function cerrarModalReporte() { document.getElementById('modal-reporte').classList.add('hidden'); }
+
+    function guardarNuevoReporte(e) {
+      e.preventDefault();
+      const producto = document.getElementById('rep-input-producto').value;
+      const tienda = document.getElementById('rep-input-tienda').value;
+      const dias = parseInt(document.getElementById('rep-input-dias').value) || 1;
+      const cufe = document.getElementById('rep-input-cufe').value.slice(0, 8) + '...';
+      const texto = document.getElementById('rep-input-texto').value;
+
+      const user = JSON.parse(localStorage.getItem(STORAGE_KEY_USER)) || { name: 'Comprador Verificado' };
+      const nuevo = { id: Date.now(), usuario: user.name, producto, tienda, dias, score: 95, cufe, texto, votos: 1 };
+
+      const reports = JSON.parse(localStorage.getItem(STORAGE_KEY_REPORTS)) || [];
+      reports.unshift(nuevo);
+      localStorage.setItem(STORAGE_KEY_REPORTS, JSON.stringify(reports));
+
+      cerrarModalReporte();
+      renderCommunityReports();
+      mostrarToast('Reporte publicado y auditado', '✅');
+    }
+
+    function votarReporte(id) {
+      const reports = JSON.parse(localStorage.getItem(STORAGE_KEY_REPORTS)) || [];
+      const rep = reports.find(r => r.id === id);
+      if (rep) {
+        rep.votos += 1;
+        localStorage.setItem(STORAGE_KEY_REPORTS, JSON.stringify(reports));
+        document.getElementById(`votos-${id}`).innerText = `(${rep.votos})`;
+        mostrarToast('Voto verificado registrado', '👍');
+      }
+    }
+
