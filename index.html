@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equalyz — Market Intelligence & Comparador de Precios</title>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            surface: {
+              DEFAULT: '#0c1229',
+              lowest: '#070c24',
+              low: '#151a32',
+              high: '#333851',
+            },
+            primary: {
+              DEFAULT: '#dc2f02',
+              accent: '#f48c06',
+              amber: '#ffba08',
+            },
+            wine: {
+              DEFAULT: '#370617',
+              dark: '#6a040f',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0c1229;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #070c24;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #333851;
+      border-radius: 4px;
+    }
+    .glow-accent {
+      box-shadow: 0 0 25px -5px rgba(244, 140, 6, 0.25);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#0c1229] text-slate-100 antialiased selection:bg-amber-500 selection:text-black">
+
+  <!-- ================= TOP HEADER (DESKTOP / TABLET) ================= -->
+  <header class="w-full h-16 bg-[#0c1229]/95 backdrop-blur-md border-b border-[#333851] sticky top-0 z-50 px-4 md:px-8 flex items-center justify-between">
+    <!-- Brand / Wordmark -->
+    <div class="flex items-center gap-3">
+      <a href="#inicio" onclick="navigate('inicio')" class="flex items-center gap-2 group">
+        <span class="text-xl md:text-2xl font-extrabold tracking-tight text-white group-hover:text-amber-400 transition-colors">Equalyz</span>
+      </a>
+      <span class="hidden sm:inline-block text-[11px] font-semibold tracking-wider text-slate-400 uppercase border-l border-slate-700 pl-3">
+        Market Intelligence
+      </span>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-1 text-sm font-medium">
+      <button onclick="navigate('inicio')" id="nav-btn-inicio" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">Inicio</button>
+      <button onclick="navigate('comparador')" id="nav-btn-comparador" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">Comparador</button>
+      <button onclick="navigate('emprendedor')" id="nav-btn-emprendedor" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">Emprendedor B2B</button>
+      <button onclick="navigate('comunidad')" id="nav-btn-comunidad" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">Comunidad</button>
+      <button onclick="navigate('alertas')" id="nav-btn-alertas" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">Alertas</button>
+    </nav>
+
+    <!-- Telemetry Utilities & Auth State -->
+    <div class="flex items-center gap-2 sm:gap-4">
+      <!-- Currency selector -->
+      <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#151a32] border border-[#333851] text-xs font-semibold text-slate-200">
+        <span>🇨🇴</span> COP
+      </div>
+
+      <!-- Live operational status -->
+      <div class="hidden lg:flex items-center gap-2 text-xs text-slate-400 bg-[#151a32]/60 px-2.5 py-1 rounded-md border border-[#333851]/60">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="font-mono text-[11px] text-slate-300">TRM $4,120</span>
+      </div>
+
+      <!-- User Auth Profile Widget -->
+      <div id="auth-header-slot">
+        <!-- Injected via JavaScript based on localStorage -->
+      </div>
+    </div>
+  </header>
+
+ 
