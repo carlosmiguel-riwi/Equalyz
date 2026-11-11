@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emprendedor B2B | Equalyz AI</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="style.css" rel="stylesheet"><script src="theme.js"></script></head><body>
+<nav class="navbar navbar-expand-lg sticky-top"><div class="container">
+<a class="navbar-brand brand" href="index.html"><span class="brand-n">Equalyz</span><small>Market Intelligence</small></a>
+<button class="navbar-toggler border-secondary" data-bs-toggle="collapse" data-bs-target="#m" aria-label="Menú"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="m"><ul class="navbar-nav me-auto ms-lg-3">
+<li><a class="nav-link" href="index.html">Inicio</a></li>
+<li><a class="nav-link " href="comparador.html">Comparador inteligente</a></li>
+<li id="navEmp" class="d-none"><a class="nav-link active" href="emprendedor.html">Emprendedor B2B</a></li>
+<li><a class="nav-link " href="comunidad.html">Comunidad</a></li>
+<li><a class="nav-link" href="alertas.html">Alertas</a></li></ul>
+<span id="authBox"></span><button id="tema" class="btn btn-out btn-sm me-2" type="button">☀ Modo claro</button><span class="tag">COP</span></div></div></nav>
+<main class="container pt-4" data-auth>
+<span class="tag ac">Datos B2B · TRM actualizada</span>
+<div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mt-2"><div><h1 class="hero-t mb-1">Panel Emprendedor B2B</h1><p class="mu mb-0">Arbitraje, márgenes y monitoreo de competidores.</p></div><div class="d-flex gap-2"><button id="csv" class="btn btn-out btn-sm">Descargar CSV</button><button id="addBtn" class="btn btn-ac btn-sm">+ Agregar producto o SKU</button></div></div>
+<div class="row g-2 mt-3 stat"><div class="col-6 col-lg-3"><div class="card-eq"><span class="mu small">Productos (SKUs)</span><b id="stSku">0</b></div></div><div class="col-6 col-lg-3"><div class="card-eq"><span class="mu small">Rivales más baratos</span><b id="stAl" class="er">0</b></div></div><div class="col-6 col-lg-3"><div class="card-eq"><span class="mu small">Margen total</span><b id="stMg">$0</b></div></div><div class="col-6 col-lg-3"><div class="card-eq"><span class="mu small">Salud del catálogo</span><b id="stSa" class="ok">0/100</b></div></div></div>
+<section class="card-eq mt-3"><h2 class="fs-5 fw-bold mb-0">Matriz de arbitraje de alta rentabilidad</h2><p class="mu small">Margen = venta sugerida − costo desembarcado. Los precios los escribes tú.</p>
+<div class="table-responsive"><table class="table table-eq align-middle mb-0"><thead><tr><th>PRODUCTO</th><th>ORIGEN / PROVEEDOR</th><th>COSTO DESEMBARCADO</th><th>VENTA SUGERIDA</th><th>MARGEN</th><th></th></tr></thead><tbody id="tbody"></tbody></table></div></section>
+<div class="row g-3 mt-1"><section class="col-lg-7"><div class="card-eq h-100"><h2 class="fs-6 fw-bold">Radar de competidores (Buy Box)</h2><div id="radar"></div></div></section>
+<section class="col-lg-5"><div class="card-eq h-100"><h2 class="fs-6 fw-bold">Simulador DIAN &amp; Courier</h2><p id="simNota" class="small wa"></p>
+<div class="row g-2 mb-2"><div class="col-6"><label class="mu small" for="fob">Valor FOB (USD)</label><input id="fob" type="number" min="0" class="form-control inp" value="150"></div><div class="col-6"><label class="mu small" for="kg">Peso (kg)</label><input id="kg" type="number" min="0" step="0.1" class="form-control inp" value="2.5"></div>
+<div class="col-6"><label class="mu small" for="orig">Origen</label><select id="orig" class="form-select inp"><option value="tlc">EE. UU. u otro país con TLC</option><option value="notlc">China u otro sin TLC</option></select></div><div class="col-6"><label class="mu small" for="tarifa">Courier (USD/lb, estimado)</label><input id="tarifa" type="number" min="0" step="0.1" class="form-control inp"></div></div>
+<div class="card-eq small" id="simOut"></div><p class="mu small mt-2 mb-0">Referencia, no asesoría aduanera: confirma las reglas con la DIAN.</p></div></section></div>
+<div class="cta mt-3 d-flex flex-wrap justify-content-between align-items-center gap-3"><div><b>Conecta tu catálogo de Mercado Libre o Shopify</b><div class="mu small">Afíliate a tiendas en línea para vender y sincronizar precios.</div></div><a href="conectar.html" class="btn btn-ac">Conectar tienda</a></div>
+</main>
+<div class="modal fade" id="mSku" tabindex="-1"><div class="modal-dialog"><div class="modal-content p-3"><h2 class="fs-5 fw-bold">Agregar producto o SKU</h2>
+<input id="fSku" class="form-control inp mb-2" placeholder="SKU (ej. ANC-9821)" aria-label="SKU"><input id="fNom" class="form-control inp mb-2" placeholder="Nombre del producto" aria-label="Nombre"><input id="fProv" class="form-control inp mb-2" placeholder="Proveedor" aria-label="Proveedor"><input id="fOri" class="form-control inp mb-2" placeholder="País de origen" aria-label="Origen">
+<input id="fCos" type="number" class="form-control inp mb-2" placeholder="Costo desembarcado (COP)" aria-label="Costo"><input id="fVen" type="number" class="form-control inp mb-2" placeholder="Venta sugerida (COP)" aria-label="Venta"><input id="fRiv" type="number" class="form-control inp mb-2" placeholder="Precio del rival (COP, opcional)" aria-label="Rival">
+<p id="fErr" class="er small d-none"></p><button id="fOk" class="btn btn-ac">Guardar producto</button></div></div></div>
+<div class="modal fade" id="mAj" tabindex="-1"><div class="modal-dialog"><div class="modal-content p-3"><h2 class="fs-5 fw-bold">Ajustar precio</h2><p id="ajNom" class="mu"></p><input id="ajP" type="number" class="form-control inp mb-2" aria-label="Nuevo precio"><p id="ajErr" class="er small d-none">Escribe un precio mayor que 0.</p><button id="ajOk" class="btn btn-ac">Aplicar precio</button></div></div></div>
+<div class="modal fade" id="mInd" tabindex="-1"><div class="modal-dialog"><div class="modal-content p-3"><h2 class="fs-5 fw-bold" id="indT"></h2><div id="indB"></div></div></div></div>
+<footer class="py-4 mt-5"><div class="container d-flex flex-wrap justify-content-between gap-2"><span><b class="brand-n">Equalyz</b> — Inteligencia Competitiva B2B</span><span>Plataforma · Precios B2B · Ecosistema</span><span>© 2026 Equalyz Inc.</span></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script><script src="datos-dian.js"></script><script src="app.js"></script></body></html>

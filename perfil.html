@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi perfil | Equalyz AI</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="style.css" rel="stylesheet"><script src="theme.js"></script></head><body>
+<nav class="navbar navbar-expand-lg sticky-top"><div class="container">
+<a class="navbar-brand brand" href="index.html"><span class="brand-n">Equalyz</span><small>Market Intelligence</small></a>
+<button class="navbar-toggler border-secondary" data-bs-toggle="collapse" data-bs-target="#m" aria-label="Menú"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="m"><ul class="navbar-nav me-auto ms-lg-3">
+<li><a class="nav-link " href="index.html">Inicio</a></li>
+<li><a class="nav-link " href="comparador.html">Comparador inteligente</a></li>
+<li id="navEmp" class="d-none"><a class="nav-link" href="emprendedor.html">Emprendedor B2B</a></li>
+<li><a class="nav-link" href="comunidad.html">Comunidad</a></li>
+<li><a class="nav-link" href="alertas.html">Alertas</a></li></ul>
+<span id="authBox"></span><button id="tema" class="btn btn-out btn-sm me-2" type="button">☀ Modo claro</button><span class="tag">COP</span></div></div></nav>
+<main class="container pt-4" data-auth><h1 class="hero-t">Mi perfil</h1>
+<div class="card-eq mt-3"><div class="d-flex align-items-center gap-3 mb-3"><div id="pfAv"></div><div><div class="mu small" id="pfMail"></div><label class="btn btn-out btn-sm mt-1" for="pfFile">Cambiar foto</label><input id="pfFile" type="file" accept="image/*" class="d-none"></div></div>
+<label class="mu small" for="pfNom">Nombre</label><input id="pfNom" class="form-control inp mb-3" maxlength="40"><button id="pfOk" class="btn btn-ac">Guardar cambios</button></div>
+<div class="card-eq mt-3 d-flex flex-wrap gap-2"><button id="pfOut" class="btn btn-out">Cerrar sesión</button><button class="btn btn-out" data-bs-toggle="modal" data-bs-target="#mAyuda">Ayuda</button><button class="btn btn-out er" data-bs-toggle="modal" data-bs-target="#mDel">Eliminar cuenta</button></div></main>
+<div class="modal fade" id="mAyuda" tabindex="-1"><div class="modal-dialog"><div class="modal-content p-3"><h2 class="fs-5 fw-bold">Ayuda</h2><ul class="small"><li><b>Comparador:</b> pega dos URLs y compara la confiabilidad de las tiendas.</li><li><b>Alertas:</b> crea reglas y registra precios para recibir avisos.</li><li><b>Emprendedor B2B:</b> solo visible con sesión iniciada.</li><li><b>Tus datos</b> se guardan solo en este navegador.</li></ul><p class="mu small mb-0">¿Más dudas? Escríbele a tu equipo de Riwi.</p></div></div></div>
+<div class="modal fade" id="mDel" tabindex="-1"><div class="modal-dialog"><div class="modal-content p-3"><h2 class="fs-5 fw-bold er">Eliminar cuenta</h2><p class="small">Se borrarán tu cuenta, tus comentarios, tus productos, reglas y alertas de este navegador. No se puede deshacer.</p><div class="d-flex gap-2"><button id="pfDel" class="btn btn-ac">Sí, eliminar</button><button class="btn btn-out" data-bs-dismiss="modal">Cancelar</button></div></div></div></div>
+<footer class="py-4 mt-5"><div class="container d-flex flex-wrap justify-content-between gap-2"><span><b class="brand-n">Equalyz</b> — Inteligencia Competitiva B2B</span><span>Plataforma · Precios B2B · Ecosistema</span><span>© 2026 Equalyz Inc.</span></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script></body></html>
